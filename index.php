@@ -5,6 +5,8 @@
       if (isset($_GET['lenght'])) {
             $passLenght = intval($_GET['lenght']);
 
+            $password = generateRandomPassword($_GET['lenght']);
+
             // var_dump($passLenght);
 
             if($passLenght >=3 && $passLenght <= 18) {
@@ -64,18 +66,24 @@
                                     </form>
                               </div>
                         </div>
-                        <div class="row">
-                              <div class="col">
-                                    <h2>
-                                          La password generata è:
-                                          <strong>
-                                                <?php
-                                                      echo $password;
-                                                ?>
-                                          </strong>
-                                    </h2>
+                        <?php
+                              if (strlen($password) > 0) {
+                        ?>
+                              <div class="row">
+                                    <div class="col">
+                                          <h2>
+                                                La password generata è:
+                                                <strong>
+                                                      <?php
+                                                            echo $password;
+                                                      ?>
+                                                </strong>
+                                          </h2>
+                                    </div>
                               </div>
-                        </div>
+                        <?php
+                              }
+                        ?>
                   </div>
             </main>
             <footer>
