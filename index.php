@@ -1,31 +1,3 @@
-<?php
-      // var_dump($_GET);
-
-      $password = '';
-      if (isset($_GET['lenght'])) {
-            $passLenght = intval($_GET['lenght']);
-
-            $password = generateRandomPassword($_GET['lenght']);
-
-            // var_dump($passLenght);
-
-            if($passLenght >=3 && $passLenght <= 18) {
-                  $validCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!$%&()=?^_-[]';
-                  $min = 0;
-                  $max = strlen($validCharacters) - 1;
-
-                  for ($i = 0; $i < $passLenght; $i++) {
-                        $randomCharacters = $validCharacters[mt_rand($min, $max)];
-                        // var_dump($randomCharacters);
-
-                        $password .= $randomCharacters;
-                  }
-
-                  // var_dump($password);
-            }
-      }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
       <head>
@@ -53,9 +25,11 @@
                   <div class="container">
                         <div class="row">
                               <div class="col">
-                                    <form action="" method="GET">
+                                    <form action="generate-password.php" method="GET">
                                           <div class="mb-3">
-                                                <label for="lenght" class="visually-hidden">Lunghezza Password</label>
+                                                <label for="lenght" class="visually-hidden">
+                                                      Lunghezza Password
+                                                </label>
                                                 <input id="lenght" name="lenght" type="number" class="form-control" required min="3" max="10" placeholder="Inserisci la lunghezza della Password...">
                                           </div>
                                           <div>
@@ -66,24 +40,6 @@
                                     </form>
                               </div>
                         </div>
-                        <?php
-                              if (strlen($password) > 0) {
-                        ?>
-                              <div class="row">
-                                    <div class="col">
-                                          <h2>
-                                                La password generata è:
-                                                <strong>
-                                                      <?php
-                                                            echo $password;
-                                                      ?>
-                                                </strong>
-                                          </h2>
-                                    </div>
-                              </div>
-                        <?php
-                              }
-                        ?>
                   </div>
             </main>
             <footer>
